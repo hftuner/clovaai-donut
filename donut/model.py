@@ -46,3 +46,21 @@ class DonutModel(VisionEncoderDecoderModel):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.loss_function = ForCausalLMLoss
+
+# https://github.com/huggingface/transformers/blob/071eb5334f5a9ac2c7a13515219be8a272388ec6/src/transformers/models/vision_encoder_decoder/modeling_vision_encoder_decoder.py#L438C1-L443C14
+class DonutVQAModel(DonutModel):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.config.prompt_end_token_id = None
+        causal_lm_loss = self.loss_function
+
+        def vqa_loss_function(logits, labels, vocab_size: int, num_items_in_batch: Optional[torch.Tensor] = None):
+                """ignores all losses before and including the prompt_end_token_id"""
+                # Get the indices of the prompt_end_token_id for each row
+                prompt_end_token_id = self.config.decoder_start_token_id if self.config.prompt_end_token_id is None else self.config.prompt_end_token_id
+                prompt_end_indices = torch.argmax((labels == prompt_end_token_id).int(), dim=1)
+                # Iterate through each row and apply the masking
+                for i in range(labels.shape[0]):
+                    labels[i, :prompt_end_indices[i]+1] = -100
+                return causal_lm_loss(logits, labels, vocab_size, num_items_in_batch)
+        self.loss_function = vqa_loss_function
