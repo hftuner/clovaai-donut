@@ -22,6 +22,7 @@ Donut (Document Understanding Transformer) is a novel transformer-based model th
 |---|---|---|---|---|
 | [doc-parsing-colab](https://colab.research.google.com/drive/1o4FzEZn4GZWxgbdiRgUmAx1bDWnOQHW2?usp=sharing) | information extraction | [SROIE-document-parsing](https://huggingface.co/datasets/hf-tuner/SROIE-document-parsing) | [donut-base-finetuned-sroie](https://huggingface.co/hf-tuner/donut-base-finetuned-sroie) | [youtube-tutorial](https://www.youtube.com/watch?v=Ucu39UY3Vtg)
 | [doc-classification-colab](https://colab.research.google.com/drive/18ApbtvvMtWl1DWJR_9D1yyrHBxzZZ_AA?usp=sharing) | document classification | [rvl-cdip-document-classification](https://huggingface.co/datasets/hf-tuner/rvl-cdip-document-classification) | [donut-base-finetuned-rvl-cdip](https://huggingface.co/hf-tuner/donut-base-finetuned-rvl-cdip) | [youtube-tutorial](https://www.youtube.com/watch?v=a2CH3LCpD7I)
+| [doc-vqa-colab](https://colab.research.google.com/drive/1O6skrn0IhoSv4dfEyJYzBLGJWJ_F-pVq?usp=sharing) | visual question answering | [docvqa-10k-donut](https://huggingface.co/datasets/hf-tuner/hf-tuner/docvqa-10k-donut) | [donut-base-finetuned-docvqa](https://huggingface.co/hf-tuner/donut-base-finetuned-docvqa) | [youtube-tutorial](https://www.youtube.com/watch?v=Mmu3dHq0zV4)
 
 
 ## Acknowledgments
