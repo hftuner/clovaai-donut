@@ -16,7 +16,7 @@ def save_json(json_obj, save_path):
 
 def run_eval(args):
     if args.save_dir:
-        os.makedirs(os.path.dirname(args.save_dir), exist_ok=True)
+        os.makedirs(args.save_dir, exist_ok=True)
 
     device = "cuda" if torch.cuda.is_available() else "cpu"
     dtype = torch.float16 if device == "cuda" else torch.float32
