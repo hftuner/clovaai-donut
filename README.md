@@ -24,6 +24,22 @@ Donut (Document Understanding Transformer) is a novel transformer-based model th
 | [doc-classification-colab](https://colab.research.google.com/drive/18ApbtvvMtWl1DWJR_9D1yyrHBxzZZ_AA?usp=sharing) | document classification | [rvl-cdip-document-classification](https://huggingface.co/datasets/hf-tuner/rvl-cdip-document-classification) | [donut-base-finetuned-rvl-cdip](https://huggingface.co/hf-tuner/donut-base-finetuned-rvl-cdip) | [youtube-tutorial](https://www.youtube.com/watch?v=a2CH3LCpD7I)
 | [doc-vqa-colab](https://colab.research.google.com/drive/1O6skrn0IhoSv4dfEyJYzBLGJWJ_F-pVq?usp=sharing) | visual question answering | [docvqa-10k-donut](https://huggingface.co/datasets/hf-tuner/hf-tuner/docvqa-10k-donut) | [donut-base-finetuned-docvqa](https://huggingface.co/hf-tuner/donut-base-finetuned-docvqa) | [youtube-tutorial](https://www.youtube.com/watch?v=Mmu3dHq0zV4)
 
+## Evaluation
+
+`test.py` calculates the **accuracy** for all the tasks & **confusion_matrix** for classification task.
+
+```bash
+cd scripts
+
+python test.py --pretrained_model_name_or_path "hf-tuner/donut-base-finetuned-rvl-cdip" \
+  --dataset_name_or_path "hf-tuner/rvl-cdip-document-classification" \
+  --task_start_token "<classification>" \
+  --task_type "classification" \
+  --eval_batch_size 16
+```
+
+Evaluation results will be saved in `scripts/results` folder by default if not specified by `--save_dir`. dataset should have `ground_truth` column in [Donut Specific format](https://github.com/clovaai/donut?tab=readme-ov-file#for-document-classification).
+
 
 ## Acknowledgments
 - The [original Donut repo](https://github.com/clovaai/donut)
