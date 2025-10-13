@@ -77,7 +77,8 @@ def run_eval(args):
             prompts = [args.task_start_token] * bsz
         elif args.task_type == "docvqa":
             prompt_template = args.task_start_token + "<s><s_question>{}</s_question><s_answer>"
-            gts = ground_truths[idx: idx + bsz]
+            i_start = idx * bsz
+            gts = ground_truths[i_start: i_start + bsz]
             prompts = [prompt_template.format(gt['question']) for gt in gts]
         
         decoder_input_ids = processor.tokenizer(prompts,
