@@ -78,11 +78,12 @@ class Evaluator:
         conf_matrix_df = pd.DataFrame(conf_matrix, index=label_names, columns=label_names)
 
         # Create a heatmap of the confusion matrix
-        plt.figure(figsize=(8, 5))
+        plt.figure(figsize=(10, 6))
         sns.heatmap(conf_matrix_df, annot=True, fmt='d', cmap='Blues')
         plt.xlabel('Predicted Label')
         plt.ylabel('True Label')
         plt.title('Confusion Matrix')
+        plt.tight_layout()
         plt.savefig('confusion_matrix.png')
 
         precision_metric = evaluate.load("precision")
